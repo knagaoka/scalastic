@@ -43,3 +43,23 @@ Results in `17976931348623159077293051907890247336179769789423065727343008115773
 import scala.util.Random
 import scala.math.BigInt
 ```
+
+> One way to create random file or directory names is to produce a random `BigInt` and convert it to base 36, yielding a string such as `"qsnvbevtomcj38o06kul"`. Poke around Scaladoc to find a way of doing this in Scala.
+
+```
+val a = BigInt(Random.nextLong)	// 5062926999373103383
+a.toString(36)						// "12grlu2f1elg7"
+```
+
+> How do you get the first character of a string in Scala? The last character?
+
+The `head` function returns the first character of a string. The `last` function returns the last character of a string.
+
+> What do the `take`, `drop`, `takeRight`, and `dropRight` string functions do? What advantage or disadvantage do they have over using substring?
+
+* `take` returns the first n elements of a string.
+* `drop`returns all the elements of a string except the first n elements.
+* `takeRight` returns the last n elements of a string.
+* `dropRight` returns all the elements of a string except the last n elements.
+
+One of the advantages of these functions over substring is only a single parameter is needed, even when selecting the beginning or end of a string. You don't have to call `substring(0, 2)` to get the first 2 elements. A simple call to `take(2)` will suffice. A disadvantage is that these functions only operate from the head or tail of a string. You cannot get the inner elements using these four functions.
