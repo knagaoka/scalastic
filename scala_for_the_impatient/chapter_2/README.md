@@ -29,3 +29,41 @@ x = y = 1				// returns Unit
 > Write a procedure `countdown(n: Int)` that prints the numbers from `n` to 0.
 
 `def countdown(n: Int): Unit = for (i <- n to 0 by -1) println(i)`
+
+> Write a `for` loop for computing the product of the Unicode codes of all letters in a string. For example, the product of the characters in `"Hello"` is 9415087488L.
+
+```
+val s = "Hello"
+var p = 1
+for (i <- 0 until s.length) {
+  p *= s(i)
+}
+p	// p: Int = 825152896
+```
+
+> Solve the preceeding excercise without writing a loop. (Hint: Look at the `StringOps` Scaladoc.)
+
+`"Hello".aggregate(1)({(prod, character) => prod * character.toInt}, {(current, next) => current * next})`
+
+> Write a function `product(s : String)` that computes the product, as descibed in the preceeding exercises.
+
+`def product(s: String) = s.aggregate(1)({(prod, character) => prod * character.toInt}, {(current, next) => current * next})
+product("Hello")`
+
+> Make the function of the preceeding exercise a recursive function.
+
+```
+def product(s: String): Int = {
+  if (s == "") 1
+  else s.head.toInt * product(s.tail)
+}
+```
+
+> Write a function that computes x<sup>n</sup>, where n is an integer.
+
+```
+def powerx(base: Int, pow: Int): Int = {
+  if (pow == 0) 1
+  else base * powerx(base, pow - 1)
+}
+```
